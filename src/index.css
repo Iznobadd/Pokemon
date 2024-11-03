@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-content {
+    background: linear-gradient(
+          90deg,
+          rgba(255, 93, 93, 0) 20px,
+          transparent 1%
+        )
+        center,
+      linear-gradient(rgba(255, 93, 93, 0) 20px, transparent 1%) center,
+      rgba(255, 255, 255, 0.051);
+    background-size: 22px 22px;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-black;
+  }
+}
