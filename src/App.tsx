@@ -6,9 +6,9 @@ import Wrapper from "./sections/Wrapper";
 
 function App() {
   return (
-    <div className="relative max-w-[100vw] overflow-hidden h-screen">
+    <div className="relative max-w-[100vw] overflow-hidden">
       <Background />
-      <div className="bg-primary h-screen w-screen shadow-background backdrop-blur-2xl grid grid-rows-[10vh_auto_10vh] grid-cols-1">
+      <div className="bg-primary w-screen shadow-background backdrop-blur-2xl">
         <Navbar />
         <Wrapper>
           <Test />

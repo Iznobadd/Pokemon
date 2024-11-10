@@ -12,9 +12,6 @@ export default {
       boxShadow: {
         background: "0 8px 32px 0 rgba(6, 8, 28, 0.37)",
       },
-      gridTemplateColumns: {
-        navbar: "5rem auto 5rem",
-      },
     },
   },
   plugins: [],
