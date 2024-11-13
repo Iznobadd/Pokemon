@@ -6,7 +6,7 @@ interface WrapperProps {
 
 const Wrapper: React.FC<WrapperProps> = ({ children }) => {
   return (
-    <div className="h-[180vh] bg-content flex justify-center relative overflow-hidden">
+    <div className="min-h-dvh bg-content flex justify-center relative overflow-hidden py-20">
       {children}
     </div>
   );
