@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { LoginData, LoginSchema } from "../types/auth.type";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useLogin } from "../services/auth/mutations";
 
 const Login = () => {
   const {
@@ -11,8 +12,10 @@ const Login = () => {
     resolver: zodResolver(LoginSchema),
   });
 
+  const loginMutation = useLogin();
+
   const onSubmit = (data: LoginData) => {
-    console.log(data);
+    loginMutation.mutate(data);
   };
 
   return (
@@ -65,6 +68,11 @@ const Login = () => {
         >
           Login
         </button>
+        {loginMutation.isError && (
+          <p className="text-red-500 text-sm mt-2">
+            {loginMutation.error.message}
+          </p>
+        )}
       </form>
     </div>
   );
