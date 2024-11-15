@@ -1,12 +1,16 @@
 import { useMutation } from "@tanstack/react-query";
-import { LoginData } from "../../types/auth.type";
+import { LoginData, LoginResponse } from "../../types/auth.type";
 import { login } from "./api";
+import { AxiosError } from "axios";
+import { useAuth } from "../../context/useAuth";
 
 export function useLogin() {
-  return useMutation({
-    mutationFn: (data: LoginData) => login(data),
-    onSuccess: () => {
-      console.log("Login success");
+  const auth = useAuth();
+  return useMutation<LoginResponse, AxiosError, LoginData>({
+    mutationFn: (data) => login(data),
+    onSuccess: (data) => {
+      console.log(data);
+      auth.login(data.access_token);
     },
   });
 }

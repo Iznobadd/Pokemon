@@ -2,8 +2,18 @@ import { useForm } from "react-hook-form";
 import { LoginData, LoginSchema } from "../types/auth.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLogin } from "../services/auth/mutations";
+import { useAuth } from "../context/useAuth";
 
 const Login = () => {
+  const { loading, token } = useAuth();
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (token) {
+    return <p>You are already logged in</p>;
+  }
   const {
     register,
     handleSubmit,

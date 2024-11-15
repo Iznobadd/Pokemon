@@ -5,7 +5,7 @@ const apiClient = axios.create({
 });
 
 apiClient.interceptors.response.use(
-  (response) => response.data,
+  (response) => response,
   (error) => {
     if (error.response) {
       const errorMessage = error.response.data.message || "An error occurred";

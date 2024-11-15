@@ -5,6 +5,17 @@ export type LoginData = {
   password: string;
 };
 
+export type LoginResponse = {
+  access_token: string;
+};
+
+export type JwtToken = {
+  email: string;
+  sub: string;
+  iat: number;
+  exp: number;
+};
+
 export const LoginSchema = z.object({
   email: z.string().email(),
   password: z.string(),
