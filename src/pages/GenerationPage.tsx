@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useFind } from "../services/pokemon/queries";
+import { useCart } from "../context/useCart";
 
 const GenerationPage = () => {
   const { generation } = useParams<{ generation: string }>();
@@ -8,6 +9,8 @@ const GenerationPage = () => {
     generation,
     limit: 20,
   });
+
+  const { addToCart } = useCart();
 
   allScarletViolet.isLoading && <div>Loading...</div>;
   allScarletViolet.isError && <div>Error</div>;
@@ -28,7 +31,12 @@ const GenerationPage = () => {
               {pokemon.name.replace("-", " ")}
             </h3>
             <img src={pokemon.sprites.front} className="h-30" />
-            <button className="bg-orange-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-orange-600 transition mt-6">
+            <button
+              className="bg-orange-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-orange-600 transition mt-6"
+              onClick={() =>
+                addToCart({ id: pokemon.id, generation: generation || "" })
+              }
+            >
               Ajouter au panier
             </button>
           </div>

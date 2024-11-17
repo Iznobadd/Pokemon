@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import { FaBasketShopping, FaUser } from "react-icons/fa6";
+import { useCart } from "../context/useCart";
 const Navbar = () => {
+  const { cart } = useCart();
+
   const generations = [
     "Scarlet Violet",
     "Legends Arceus",
@@ -22,8 +25,15 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div className="flex gap-8">
-          <FaBasketShopping className="text-white cursor-pointer" size={32} />
+        <div className="flex gap-8 items-center">
+          <div className="relative">
+            <FaBasketShopping className="text-white cursor-pointer" size={32} />
+            {cart.length > 0 && (
+              <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1">
+                {cart.length}
+              </span>
+            )}
+          </div>
           <FaUser className="text-white cursor-pointer" size={32} />
         </div>
       </div>
