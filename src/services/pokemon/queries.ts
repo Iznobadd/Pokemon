@@ -1,11 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
-import { findAllScarletViolet } from "./api";
-import { Pokemon } from "../../types/pokemon.type";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { find } from "./api";
+import { FindParams, Pokemon } from "../../types/pokemon.type";
 import { AxiosError } from "axios";
 
-export function useFindAllScarletViolet() {
+export function useFind(
+  params: FindParams
+): UseQueryResult<Pokemon[], AxiosError> {
   return useQuery<Pokemon[], AxiosError>({
-    queryKey: ["pokemon/scarlet-violet"],
-    queryFn: findAllScarletViolet,
+    queryKey: ["pokemons", params],
+    queryFn: () => find(params),
   });
 }

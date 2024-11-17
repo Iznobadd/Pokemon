@@ -8,3 +8,9 @@ export interface Pokemon {
   generation: string[];
   types: string[];
 }
+
+export interface FindParams {
+  generation?: string;
+  limit?: number;
+  offset?: number;
+}

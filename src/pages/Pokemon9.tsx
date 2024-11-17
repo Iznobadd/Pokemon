@@ -1,7 +1,10 @@
-import { useFindAllScarletViolet } from "../services/pokemon/queries";
+import { useFind } from "../services/pokemon/queries";
 
 const Pokemon9 = () => {
-  const allScarletViolet = useFindAllScarletViolet();
+  const allScarletViolet = useFind({
+    generation: "Scarlet Violet",
+    limit: 20,
+  });
 
   allScarletViolet.isLoading && <div>Loading...</div>;
   allScarletViolet.isError && <div>Error</div>;
