@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "./MainLayout";
-import Pokemon9 from "../pages/Pokemon9";
+import GenerationPage from "../pages/GenerationPage";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import OnlyPublicRoute from "./OnlyPublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
+import Home from "../pages/Home";
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +13,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Pokemon9 />,
+        element: <Home />,
+      },
+      {
+        path: "/generation/:generation",
+        element: <GenerationPage />,
       },
       {
         element: <OnlyPublicRoute />,
