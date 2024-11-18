@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import OnlyPublicRoute from "./OnlyPublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import Home from "../pages/Home";
+import Cart from "../pages/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
       {
         path: "/generation/:generation",
         element: <GenerationPage />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
       {
         element: <OnlyPublicRoute />,

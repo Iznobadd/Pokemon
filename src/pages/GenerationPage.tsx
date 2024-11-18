@@ -34,7 +34,11 @@ const GenerationPage = () => {
             <button
               className="bg-orange-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-orange-600 transition mt-6"
               onClick={() =>
-                addToCart({ id: pokemon.id, generation: generation || "" })
+                addToCart({
+                  pokemon,
+                  generation: generation || "",
+                  shiny: true,
+                })
               }
             >
               Ajouter au panier

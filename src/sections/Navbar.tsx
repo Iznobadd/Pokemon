@@ -27,12 +27,17 @@ const Navbar = () => {
         </ul>
         <div className="flex gap-8 items-center">
           <div className="relative">
-            <FaBasketShopping className="text-white cursor-pointer" size={32} />
-            {cart.length > 0 && (
-              <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-1">
-                {cart.length}
-              </span>
-            )}
+            <Link to="/cart">
+              <FaBasketShopping
+                className="text-white cursor-pointer"
+                size={32}
+              />
+              {cart.length > 0 && (
+                <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs font-bold rounded-full px-2 py-1">
+                  {cart.length}
+                </span>
+              )}
+            </Link>
           </div>
           <FaUser className="text-white cursor-pointer" size={32} />
         </div>
