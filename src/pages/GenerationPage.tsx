@@ -7,6 +7,8 @@ const GenerationPage = () => {
   const { generation } = useParams<{ generation: string }>();
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState<string>("");
+  const [page, setPage] = useState<number>(0);
+  const ITEMS_PER_PAGE = 20;
 
   const { addToCart } = useCart();
 
@@ -20,14 +22,17 @@ const GenerationPage = () => {
     };
   }, [searchTerm]);
 
+  useEffect(() => {
+    setPage(0);
+  }, [debouncedSearchTerm, generation]);
+
   const findParams = useFind({
     generation,
     name: debouncedSearchTerm || undefined,
-    limit: 20,
+    limit: ITEMS_PER_PAGE,
+    offset: page * ITEMS_PER_PAGE,
   });
 
-  findParams.isLoading && <div>Loading...</div>;
-  findParams.isError && <div>Error</div>;
   return (
     <>
       <div>
@@ -45,6 +50,8 @@ const GenerationPage = () => {
         </div>
       </div>
       <div className="grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-16 mt-8 w-full">
+        {findParams.isLoading && <div>Loading...</div>}
+        {findParams.isError && <div>Error</div>}
         {findParams.data?.map((pokemon) => (
           <div
             key={pokemon.id}
@@ -68,6 +75,23 @@ const GenerationPage = () => {
             </button>
           </div>
         ))}
+      </div>
+      <div className="flex justify-center items-center mt-8">
+        <button
+          className="bg-orange-500 text-white px-4 py-2 rounded-md mx-2 disabled:bg-gray-500"
+          onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+          disabled={page === 0 || findParams.isLoading}
+        >
+          Précédent
+        </button>
+        <span className="text-white mx-4">Page {page + 1}</span>
+        <button
+          className="bg-orange-500 text-white px-4 py-2 rounded-md mx-2 disabled:bg-gray-500"
+          onClick={() => setPage((prev) => prev + 1)}
+          disabled={!findParams.data || findParams.data.length < ITEMS_PER_PAGE}
+        >
+          Suivant
+        </button>
       </div>
     </>
   );
