@@ -26,6 +26,12 @@ const GenerationPage = () => {
     setPage(0);
   }, [debouncedSearchTerm, generation]);
 
+  useEffect(() => {
+    if (generation) {
+      document.title = `${generation} - Pokémon`;
+    }
+  }, [generation]);
+
   const findParams = useFind({
     generation,
     name: debouncedSearchTerm || undefined,
