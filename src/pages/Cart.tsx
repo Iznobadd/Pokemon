@@ -1,3 +1,4 @@
+import CartSummary from "../components/CartSummary";
 import { useCart } from "../context/useCart";
 import { Helmet } from "react-helmet";
 
@@ -10,8 +11,8 @@ const Cart = () => {
       <Helmet>
         <title>Cart - Pokemon</title>
       </Helmet>
-      <div className="flex">
-        <div className="text-white  w-2/3">
+      <div className="flex gap-16">
+        <div className="text-white w-2/3">
           {cart.map((item) => (
             <div
               key={item.pokemon.id}
@@ -73,7 +74,9 @@ const Cart = () => {
             </div>
           ))}
         </div>
-        <div className="w-1/3"></div>
+        <div className="w-1/3 border bg-primary border-primary rounded py-8">
+          <CartSummary cart={cart} />
+        </div>
       </div>
     </>
   );

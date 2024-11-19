@@ -1,11 +1,5 @@
 import { createContext, FC, ReactNode, useContext, useState } from "react";
-import { Pokemon } from "../types/pokemon.type";
-
-type CartItem = {
-  pokemon: Pokemon;
-  generation: string;
-  shiny: boolean;
-};
+import { CartItem } from "../types/cart.type";
 
 type CartContextType = {
   cart: CartItem[];
