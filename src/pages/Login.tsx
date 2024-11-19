@@ -4,12 +4,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useLogin } from "../services/auth/mutations";
 import { useAuth } from "../context/useAuth";
 import { Helmet } from "react-helmet";
+import Loading from "../components/Loading";
 
 const Login = () => {
   const { loading, token } = useAuth();
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (token) {
