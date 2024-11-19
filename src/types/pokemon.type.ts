@@ -10,6 +10,7 @@ export interface Pokemon {
 }
 
 export interface FindParams {
+  name?: string;
   generation?: string;
   limit?: number;
   offset?: number;

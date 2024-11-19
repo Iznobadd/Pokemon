@@ -1,28 +1,51 @@
 import { useParams } from "react-router-dom";
 import { useFind } from "../services/pokemon/queries";
 import { useCart } from "../context/useCart";
+import { useEffect, useState } from "react";
 
 const GenerationPage = () => {
   const { generation } = useParams<{ generation: string }>();
-
-  const allScarletViolet = useFind({
-    generation,
-    limit: 20,
-  });
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState<string>("");
 
   const { addToCart } = useCart();
 
-  allScarletViolet.isLoading && <div>Loading...</div>;
-  allScarletViolet.isError && <div>Error</div>;
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 500);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTerm]);
+
+  const findParams = useFind({
+    generation,
+    name: debouncedSearchTerm || undefined,
+    limit: 20,
+  });
+
+  findParams.isLoading && <div>Loading...</div>;
+  findParams.isError && <div>Error</div>;
   return (
     <>
       <div>
         <h1 className="block text-center text-3xl text-white font-bold">
           Pokemon from {generation}
         </h1>
+        <div className="text-center mt-4">
+          <input
+            type="text"
+            placeholder="Rechercher un Pokémon"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="border p-2 rounded-md text-black"
+          />
+        </div>
       </div>
       <div className="grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] gap-16 mt-8 w-full">
-        {allScarletViolet.data?.map((pokemon) => (
+        {findParams.data?.map((pokemon) => (
           <div
             key={pokemon.id}
             className="flex justify-center items-center flex-col rounded-2xl p-4 w-full bg-[rgba(255,255,255,0.125)]"
