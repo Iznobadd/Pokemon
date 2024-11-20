@@ -1,3 +1,4 @@
+import { useAuth } from "../context/useAuth";
 import { CartItem } from "../types/cart.type";
 import { ProductData } from "../types/products.type";
 import CheckoutButton from "./CheckoutButton";
@@ -7,6 +8,7 @@ type CartSummaryProps = {
 };
 
 const CartSummary = ({ cart }: CartSummaryProps) => {
+  const { token } = useAuth();
   const products: ProductData[] = cart.map((item) => ({
     name: item.pokemon.name,
     generation: item.generation,
@@ -53,9 +55,20 @@ const CartSummary = ({ cart }: CartSummaryProps) => {
           <input type="text" className="bg-gray-400 rounded p-2" />
         </div>
       </div>
-      <div className="pt-8 mx-8">
-        <CheckoutButton products={products} />
-      </div>
+      {token ? (
+        <div className="pt-8 mx-8">
+          <CheckoutButton products={products} />
+        </div>
+      ) : (
+        <div className="pt-8 mx-8">
+          <button className="bg-orange-500 text-white px-8 py-4 rounded w-full font-bold">
+            Login
+          </button>
+          <button className="mt-8 bg-gray-400 text-white px-8 py-4 rounded w-full font-bold">
+            Register
+          </button>
+        </div>
+      )}
     </>
   );
 };

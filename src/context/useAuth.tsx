@@ -7,9 +7,12 @@ import {
   useRef,
 } from "react";
 import { isValidToken } from "../utils/isValidToken";
+import { jwtDecode } from "jwt-decode";
+import { JwtToken } from "../types/auth.type";
 
 type AuthContextData = {
   token: string | null;
+  user: JwtToken | null;
   login: (token: string) => void;
   logout: () => void;
   loading: boolean;
@@ -23,6 +26,7 @@ export const AuthContext = createContext<AuthContextData | undefined>(
 
 export const AuthProvider = ({ children }: Props) => {
   const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState<JwtToken | null>(null);
   const [loading, setLoading] = useState(true);
   const isMounted = useRef(true);
 
@@ -34,6 +38,10 @@ export const AuthProvider = ({ children }: Props) => {
           const isValid = await isValidToken(token);
           if (isValid && isMounted.current) {
             setToken(token);
+            const decodedToken = jwtDecode<JwtToken>(token);
+            if (decodedToken) {
+              setUser(decodedToken);
+            }
           } else {
             localStorage.removeItem("access_token");
             if (isMounted.current) setToken(null);
@@ -68,7 +76,7 @@ export const AuthProvider = ({ children }: Props) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout, loading }}>
+    <AuthContext.Provider value={{ token, login, logout, loading, user }}>
       {children}
     </AuthContext.Provider>
   );
