@@ -1,10 +1,20 @@
 import { CartItem } from "../types/cart.type";
+import { ProductData } from "../types/products.type";
+import CheckoutButton from "./CheckoutButton";
 
 type CartSummaryProps = {
   cart: CartItem[];
 };
 
 const CartSummary = ({ cart }: CartSummaryProps) => {
+  const products: ProductData[] = cart.map((item) => ({
+    name: item.pokemon.name,
+    generation: item.generation,
+    image: item.pokemon.sprites.front || "",
+    price: 4.99,
+    quantity: 1,
+  }));
+
   return (
     <>
       <h2 className="font-bold text-white text-center pb-8 mx-8 text-2xl border-b border-b-primary">
@@ -44,9 +54,7 @@ const CartSummary = ({ cart }: CartSummaryProps) => {
         </div>
       </div>
       <div className="pt-8 mx-8">
-        <button className="bg-orange-500 text-white px-8 py-4 rounded w-full font-bold">
-          CHECKOUT
-        </button>
+        <CheckoutButton products={products} />
       </div>
     </>
   );
