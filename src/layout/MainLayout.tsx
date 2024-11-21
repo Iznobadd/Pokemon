@@ -6,7 +6,7 @@ import Footer from "../sections/Footer";
 
 const MainLayout = () => {
   return (
-    <div className="relative max-w-[100vw] overflow-hidden">
+    <div className="relative max-w-[100vw] overflow-hidden bg-black">
       <Background />
       <div className="bg-primary w-screen shadow-background backdrop-blur-2xl">
         <Navbar />

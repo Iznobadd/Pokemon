@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "./MainLayout";
+import MainLayout from "../layout/MainLayout";
 import GenerationPage from "../pages/GenerationPage";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
@@ -8,6 +8,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Home from "../pages/Home";
 import Cart from "../pages/Cart";
 import AdminRoute from "./AdminRoute";
+import AdminLayout from "../layout/AdminLayout";
 import HomeDashboard from "../pages/admin/HomeDashboard";
 
 export const router = createBrowserRouter([
@@ -48,8 +49,13 @@ export const router = createBrowserRouter([
           },
         ],
       },
+    ],
+  },
+  {
+    element: <AdminRoute />,
+    children: [
       {
-        element: <AdminRoute />,
+        element: <AdminLayout />,
         children: [
           {
             path: "/admin",
