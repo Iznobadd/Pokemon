@@ -7,6 +7,8 @@ import OnlyPublicRoute from "./OnlyPublicRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import Home from "../pages/Home";
 import Cart from "../pages/Cart";
+import AdminRoute from "./AdminRoute";
+import HomeDashboard from "../pages/admin/HomeDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +45,15 @@ export const router = createBrowserRouter([
           {
             path: "/test",
             element: <div>Test</div>,
+          },
+        ],
+      },
+      {
+        element: <AdminRoute />,
+        children: [
+          {
+            path: "/admin",
+            element: <HomeDashboard />,
           },
         ],
       },

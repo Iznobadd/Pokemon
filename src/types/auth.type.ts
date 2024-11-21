@@ -12,7 +12,7 @@ export type LoginResponse = {
 export type JwtToken = {
   email: string;
   sub: string;
-  roles: string[];
+  role: string;
   iat: number;
   exp: number;
 };
