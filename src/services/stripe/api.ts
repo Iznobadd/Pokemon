@@ -16,3 +16,8 @@ export const getTotalProfit = async () => {
   const response = await apiClient.get<number>("/payment/all");
   return response.data;
 };
+
+export const getAverageOrderValue = async () => {
+  const response = await apiClient.get<number>("/payment/average");
+  return response.data;
+};

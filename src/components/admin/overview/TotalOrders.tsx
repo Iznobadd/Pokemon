@@ -1,24 +1,24 @@
-import { FaDollarSign } from "react-icons/fa6";
-import { useTotalProfit } from "../../../services/stripe/queries";
 import Loading from "../../Loading";
+import { useTotalOrders } from "../../../services/order/queries";
+import { SiTask } from "react-icons/si";
 
-const TotalProfit = () => {
-  const getTotalProfit = useTotalProfit();
+const TotalOrders = () => {
+  const getTotalOrders = useTotalOrders();
   return (
     <div className="rounded-sm border border-stroke bg-white py-6 px-8 shadow-md">
-      {getTotalProfit.isLoading ? (
+      {getTotalOrders.isLoading ? (
         <Loading />
       ) : (
         <>
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
-            <FaDollarSign className="text-blue-700" />
+            <SiTask className="text-blue-700" />
           </div>
           <div className="mt-4 flex items-end justify-between">
             <div>
               <h4 className="text-2xl font-bold text-black">
-                ${getTotalProfit.data}
+                {getTotalOrders.data}
               </h4>
-              <span className="text-sm text-gray-700">Total de profit</span>
+              <span className="text-sm text-gray-700">Commandes totales</span>
             </div>
           </div>
         </>
@@ -27,4 +27,4 @@ const TotalProfit = () => {
   );
 };
 
-export default TotalProfit;
+export default TotalOrders;

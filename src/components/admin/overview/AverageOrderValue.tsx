@@ -1,24 +1,24 @@
-import { FaDollarSign } from "react-icons/fa6";
-import { useTotalProfit } from "../../../services/stripe/queries";
+import { FaCoins } from "react-icons/fa6";
 import Loading from "../../Loading";
+import { useAverageOrderValue } from "../../../services/stripe/queries";
 
-const TotalProfit = () => {
-  const getTotalProfit = useTotalProfit();
+const AverageOrderValue = () => {
+  const getAverageOrderValue = useAverageOrderValue();
   return (
     <div className="rounded-sm border border-stroke bg-white py-6 px-8 shadow-md">
-      {getTotalProfit.isLoading ? (
+      {getAverageOrderValue.isLoading ? (
         <Loading />
       ) : (
         <>
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
-            <FaDollarSign className="text-blue-700" />
+            <FaCoins className="text-blue-700" />
           </div>
           <div className="mt-4 flex items-end justify-between">
             <div>
               <h4 className="text-2xl font-bold text-black">
-                ${getTotalProfit.data}
+                ${getAverageOrderValue.data?.toFixed(2)}
               </h4>
-              <span className="text-sm text-gray-700">Total de profit</span>
+              <span className="text-sm text-gray-700">Moyenne de commande</span>
             </div>
           </div>
         </>
@@ -27,4 +27,4 @@ const TotalProfit = () => {
   );
 };
 
-export default TotalProfit;
+export default AverageOrderValue;

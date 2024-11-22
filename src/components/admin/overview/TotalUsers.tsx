@@ -5,7 +5,7 @@ import { useTotalUsers } from "../../../services/user/queries";
 const TotalUsers = () => {
   const getTotalUsers = useTotalUsers();
   return (
-    <div className="rounded-sm border border-stroke bg-white py-6 px-8 shadow-default">
+    <div className="rounded-sm border border-stroke bg-white py-6 px-8 shadow-md">
       {getTotalUsers.isLoading ? (
         <Loading />
       ) : (
@@ -18,7 +18,9 @@ const TotalUsers = () => {
               <h4 className="text-2xl font-bold text-black">
                 {getTotalUsers.data}
               </h4>
-              <span className="text-sm text-gray-700">Total Users</span>
+              <span className="text-sm text-gray-700">
+                Utilisateurs inscrit
+              </span>
             </div>
           </div>
         </>
