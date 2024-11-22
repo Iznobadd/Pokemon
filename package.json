@@ -2,7 +2,6 @@
   "name": "pokemon",
   "private": true,
   "version": "0.0.0",
-  "packageManager": "pnpm@9.14.2",
   "type": "module",
   "scripts": {
     "dev": "vite",

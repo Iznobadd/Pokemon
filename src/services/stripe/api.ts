@@ -11,3 +11,8 @@ export const createCheckoutSession = async (data: ProductData[]) => {
   );
   return response.data;
 };
+
+export const getTotalProfit = async () => {
+  const response = await apiClient.get<number>("/payment/all");
+  return response.data;
+};
