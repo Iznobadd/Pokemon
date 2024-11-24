@@ -11,7 +11,7 @@ const Cart = () => {
       <Helmet>
         <title>Cart - Pokemon</title>
       </Helmet>
-      <div className="flex gap-16">
+      <div className="flex gap-16 items-start">
         <div className="text-white w-2/3">
           {cart.map((item) => (
             <div
