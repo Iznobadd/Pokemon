@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
-import { FaCalendar } from "react-icons/fa6";
+import { FaCalendar, FaUsers } from "react-icons/fa6";
 import { GrOverview } from "react-icons/gr";
+import { SiTask } from "react-icons/si";
 const Sidebar = () => {
   return (
     <aside className="static w-72 h-screen left-0 top-0 z-[9999] flex-col translate-x-0 bg-[#1c2434]">
@@ -20,7 +21,7 @@ const Sidebar = () => {
             <ul className="mb-6 flex flex-col gap-2">
               <li>
                 <Link
-                  to="/test"
+                  to="/admin"
                   className="group relative flex items-center gap-3 rounded-sm py-2 px-4 hover:bg-gray-600 text-xl font-semibold text-white/90"
                 >
                   <GrOverview /> Vue d'ensemble
@@ -28,10 +29,10 @@ const Sidebar = () => {
               </li>
               <li>
                 <Link
-                  to="/test"
+                  to="/admin/orders"
                   className="group relative flex items-center gap-3 rounded-sm py-2 px-4 hover:bg-gray-600 text-xl font-semibold text-white/90"
                 >
-                  <FaCalendar /> Calendar
+                  <SiTask /> Commandes
                 </Link>
               </li>
               <li>
@@ -39,15 +40,7 @@ const Sidebar = () => {
                   to="/test"
                   className="group relative flex items-center gap-3 rounded-sm py-2 px-4 hover:bg-gray-600 text-xl font-semibold text-white/90"
                 >
-                  <FaCalendar /> Calendar
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/test"
-                  className="group relative flex items-center gap-3 rounded-sm py-2 px-4 hover:bg-gray-600 text-xl font-semibold text-white/90"
-                >
-                  <FaCalendar /> Calendar
+                  <FaUsers /> Utilisateurs
                 </Link>
               </li>
             </ul>

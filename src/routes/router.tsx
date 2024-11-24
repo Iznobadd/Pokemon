@@ -10,6 +10,8 @@ import Cart from "../pages/Cart";
 import AdminRoute from "./AdminRoute";
 import AdminLayout from "../layout/AdminLayout";
 import HomeDashboard from "../pages/admin/HomeDashboard";
+import OrderDashboard from "../pages/admin/OrderDashboard";
+import UserDashboard from "../pages/admin/UserDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +62,14 @@ export const router = createBrowserRouter([
           {
             path: "/admin",
             element: <HomeDashboard />,
+          },
+          {
+            path: "/admin/orders",
+            element: <OrderDashboard />,
+          },
+          {
+            path: "/admin/users",
+            element: <UserDashboard />,
           },
         ],
       },
