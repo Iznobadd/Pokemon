@@ -17,6 +17,8 @@ const CartSummary = ({ cart }: CartSummaryProps) => {
     quantity: 1,
   }));
 
+  let total = cart.length * 4.99;
+
   return (
     <>
       <h2 className="font-bold text-white text-center pb-8 mx-8 text-2xl border-b border-b-primary">
@@ -37,7 +39,7 @@ const CartSummary = ({ cart }: CartSummaryProps) => {
       <div className="mx-8 py-8 border-b border-primary flex justify-between">
         <h3 className="font-bold text-xl text-white">TOTAL</h3>
         <p className="text-gray-400 text-right text-xl font-bold">
-          $ {cart.length * 4.99}
+          $ {total.toFixed(2)}
         </p>
       </div>
       <div className="py-8 mx-8 border-b border-primary">
