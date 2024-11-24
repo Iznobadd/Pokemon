@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.png";
-import { FaCalendar, FaUsers } from "react-icons/fa6";
+import { FaUsers } from "react-icons/fa6";
 import { GrOverview } from "react-icons/gr";
 import { SiTask } from "react-icons/si";
 const Sidebar = () => {
