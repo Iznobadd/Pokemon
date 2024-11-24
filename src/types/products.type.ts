@@ -9,3 +9,9 @@ export interface ProductData {
 export interface CheckoutSessionResponse {
   id: string;
 }
+
+export interface CheckoutSessionRequest {
+  products: ProductData[];
+  deliveryMethod: string;
+  deliveryDetails: string;
+}

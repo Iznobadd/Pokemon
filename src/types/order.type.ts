@@ -8,6 +8,8 @@ export interface Order {
   currency: string;
   status: string;
   products: ProductData[];
+  deliveryMethod: string;
+  deliveryDetails: string;
   completedAt: Date;
   createdAt: Date;
 }

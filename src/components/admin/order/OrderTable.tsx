@@ -28,7 +28,7 @@ const OrderTable = () => {
         <div className="grid grid-cols-5 rounded-sm bg-gray-100">
           <div className="p-5">
             <h5 className="text-md font-medium uppercase text-gray-600">
-              CLIENT
+              LIVRAISON
             </h5>
           </div>
           <div className="p-5 text-center">
@@ -61,7 +61,7 @@ const OrderTable = () => {
               <div className="grid grid-cols-5 border-b border-gray-100">
                 <div className="flex items-center justify-start p-5">
                   <p className="text-md font-medium text-gray-800">
-                    {order.user}
+                    {order.deliveryMethod} : {order.deliveryDetails}
                   </p>
                 </div>
                 <div className="flex items-center justify-center p-5">

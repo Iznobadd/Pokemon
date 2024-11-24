@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useAuth } from "../context/useAuth";
 import { CartItem } from "../types/cart.type";
 import { ProductData } from "../types/products.type";
@@ -8,7 +9,21 @@ type CartSummaryProps = {
 };
 
 const CartSummary = ({ cart }: CartSummaryProps) => {
-  const { token } = useAuth();
+  const [selectedDelivery, setSelectedDelivery] = useState<string>("WHATSAPP");
+  const [deliveryDetails, setDeliveryDetails] = useState<string>("");
+
+  const handleDeliverySelect = (method: string) => {
+    setSelectedDelivery(method);
+    setDeliveryDetails("");
+  };
+
+  const handleDeliveryDetailsChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setDeliveryDetails(e.target.value);
+  };
+
+  const { token, user } = useAuth();
   const products: ProductData[] = cart.map((item) => ({
     name: item.pokemon.name,
     generation: item.generation,
@@ -44,22 +59,91 @@ const CartSummary = ({ cart }: CartSummaryProps) => {
       </div>
       <div className="py-8 mx-8 border-b border-primary">
         <h3 className="font-bold text-xl text-white">DELIVERY</h3>
-        <div className="flex justify-between py-4 items-center">
-          <h3 className="font-bold text-gray-400">WHATSAPP</h3>
-          <input type="text" className="bg-gray-400 rounded p-2" />
+        <div className="flex justify-around">
+          {["WHATSAPP", "DISCORD", "EMAIL"].map((method) => (
+            <div
+              key={method}
+              className={`flex justify-between py-4 items-center w-full text-center cursor-pointer ${
+                selectedDelivery === method
+                  ? "border-b-2 border-b-gray-400"
+                  : ""
+              }`}
+              onClick={() => handleDeliverySelect(method)}
+            >
+              <h3
+                className={`font-bold ${
+                  selectedDelivery === method ? "text-white" : "text-gray-400"
+                } w-full`}
+              >
+                {method}
+              </h3>
+            </div>
+          ))}
         </div>
-        <div className="flex justify-between py-4 items-center">
-          <h3 className="font-bold text-gray-400">DISCORD</h3>
-          <input type="text" className="bg-gray-400 rounded p-2" />
-        </div>
-        <div className="flex justify-between py-4 items-center">
-          <h3 className="font-bold text-gray-400">EMAIL</h3>
-          <input type="text" className="bg-gray-400 rounded p-2" />
-        </div>
+        {selectedDelivery && (
+          <div className="mt-4">
+            {selectedDelivery === "DISCORD" && (
+              <>
+                <label
+                  htmlFor="deliveryDetails"
+                  className="text-gray-400 text-sm block mb-2"
+                >
+                  Enter your discord name :
+                </label>
+                <input
+                  type="text"
+                  id="deliveryDetails"
+                  className="w-full bg-primary px-4 py-2 rounded text-white border border-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  value={deliveryDetails}
+                  onChange={handleDeliveryDetailsChange}
+                />
+              </>
+            )}
+            {selectedDelivery === "WHATSAPP" && (
+              <>
+                <label
+                  htmlFor="deliveryDetails"
+                  className="text-gray-400 text-sm block mb-2"
+                >
+                  Enter your phone number :
+                </label>
+                <input
+                  type="text"
+                  id="deliveryDetails"
+                  className="w-full bg-primary px-4 py-2 rounded text-white border border-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  value={deliveryDetails}
+                  onChange={handleDeliveryDetailsChange}
+                />
+              </>
+            )}
+            {selectedDelivery === "EMAIL" && (
+              <>
+                <label
+                  htmlFor="deliveryDetails"
+                  className="text-gray-400 text-sm block mb-2"
+                >
+                  Enter your email :
+                </label>
+                <input
+                  type="text"
+                  id="deliveryDetails"
+                  className="w-full bg-primary px-4 py-2 rounded text-white border border-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  value={user?.email}
+                  onChange={handleDeliveryDetailsChange}
+                />
+              </>
+            )}
+          </div>
+        )}
       </div>
+
       {token ? (
         <div className="pt-8 mx-8">
-          <CheckoutButton products={products} />
+          <CheckoutButton
+            products={products}
+            selectedDelivery={selectedDelivery}
+            deliveryDetails={deliveryDetails}
+          />
         </div>
       ) : (
         <div className="pt-8 mx-8">

@@ -1,10 +1,10 @@
 import {
+  CheckoutSessionRequest,
   CheckoutSessionResponse,
-  ProductData,
 } from "../../types/products.type";
 import apiClient from "../../utils/apiClient";
 
-export const createCheckoutSession = async (data: ProductData[]) => {
+export const createCheckoutSession = async (data: CheckoutSessionRequest) => {
   const response = await apiClient.post<CheckoutSessionResponse>(
     "/payment/create-checkout-session",
     data

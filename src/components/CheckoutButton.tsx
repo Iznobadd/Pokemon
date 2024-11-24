@@ -5,14 +5,25 @@ import { stripePromise } from "../utils/stripe";
 
 type CheckoutButtonProps = {
   products: ProductData[];
+  selectedDelivery: string;
+  deliveryDetails: string;
 };
 
-const CheckoutButton: FC<CheckoutButtonProps> = ({ products }) => {
+const CheckoutButton: FC<CheckoutButtonProps> = ({
+  products,
+  selectedDelivery,
+  deliveryDetails,
+}) => {
   const checkoutMutation = useCheckoutSession();
 
   const handleCheckout = async () => {
     try {
-      checkoutMutation.mutate(products, {
+      const payload = {
+        products,
+        deliveryMethod: selectedDelivery,
+        deliveryDetails,
+      };
+      checkoutMutation.mutate(payload, {
         onSuccess: async (session) => {
           console.log(session);
           const stripe = await stripePromise;
