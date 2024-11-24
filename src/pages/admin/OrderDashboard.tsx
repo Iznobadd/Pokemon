@@ -1,5 +1,11 @@
+import OrderTable from "../../components/admin/order/OrderTable";
+
 const OrderDashboard = () => {
-  return <div>OrderDashboard</div>;
+  return (
+    <div>
+      <OrderTable />
+    </div>
+  );
 };
 
 export default OrderDashboard;
