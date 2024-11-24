@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import { FaBasketShopping, FaUser } from "react-icons/fa6";
 import { useCart } from "../context/useCart";
+import { useAuth } from "../context/useAuth";
 const Navbar = () => {
   const { cart } = useCart();
+  const { user } = useAuth();
 
   const generations = [
     "Scarlet Violet",
@@ -40,6 +42,14 @@ const Navbar = () => {
             </Link>
           </div>
           <FaUser className="text-white cursor-pointer" size={32} />
+          {user?.role === "ADMIN" && (
+            <Link
+              to="/admin"
+              className="text-white px-4 py-2 bg-orange-500 rounded-md"
+            >
+              Administration
+            </Link>
+          )}
         </div>
       </div>
     </nav>

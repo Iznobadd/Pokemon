@@ -1,9 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import { FaUsers } from "react-icons/fa6";
 import { GrOverview } from "react-icons/gr";
 import { SiTask } from "react-icons/si";
+import { RiArrowGoBackLine } from "react-icons/ri";
+
 const Sidebar = () => {
+  const location = useLocation(); // Accède à l'URL actuelle
+
+  // Fonction pour vérifier si le lien est actif
+  const isActive = (path: string) => location.pathname === path;
+
   return (
     <aside className="static w-72 h-screen left-0 top-0 z-[9999] flex-col translate-x-0 bg-[#1c2434]">
       <div className="p-6 flex items-center">
@@ -22,7 +29,9 @@ const Sidebar = () => {
               <li>
                 <Link
                   to="/admin"
-                  className="group relative flex items-center gap-3 rounded-sm py-2 px-4 hover:bg-gray-600 text-xl font-semibold text-white/90"
+                  className={`group relative flex items-center gap-3 rounded-sm py-2 px-4 text-xl font-semibold text-white/90 transition duration-300 ${
+                    isActive("/admin") ? "bg-gray-600" : "hover:bg-gray-600"
+                  }`}
                 >
                   <GrOverview /> Vue d'ensemble
                 </Link>
@@ -30,7 +39,11 @@ const Sidebar = () => {
               <li>
                 <Link
                   to="/admin/orders"
-                  className="group relative flex items-center gap-3 rounded-sm py-2 px-4 hover:bg-gray-600 text-xl font-semibold text-white/90"
+                  className={`group relative flex items-center gap-3 rounded-sm py-2 px-4 text-xl font-semibold text-white/90 transition duration-300 ${
+                    isActive("/admin/orders")
+                      ? "bg-gray-600"
+                      : "hover:bg-gray-600"
+                  }`}
                 >
                   <SiTask /> Commandes
                 </Link>
@@ -38,9 +51,21 @@ const Sidebar = () => {
               <li>
                 <Link
                   to="/test"
-                  className="group relative flex items-center gap-3 rounded-sm py-2 px-4 hover:bg-gray-600 text-xl font-semibold text-white/90"
+                  className={`group relative flex items-center gap-3 rounded-sm py-2 px-4 text-xl font-semibold text-white/90 transition duration-300 ${
+                    isActive("/test") ? "bg-gray-600" : "hover:bg-gray-600"
+                  }`}
                 >
                   <FaUsers /> Utilisateurs
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/"
+                  className={`group relative flex items-center gap-3 rounded-sm py-2 px-4 text-xl font-semibold text-white/90 transition duration-300 ${
+                    isActive("/") ? "bg-gray-600" : "hover:bg-gray-600"
+                  }`}
+                >
+                  <RiArrowGoBackLine /> Retour au site
                 </Link>
               </li>
             </ul>
