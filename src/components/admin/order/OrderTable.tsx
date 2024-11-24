@@ -33,7 +33,7 @@ const OrderTable = () => {
           </div>
           <div className="p-5 text-center">
             <h5 className="text-md font-medium uppercase text-gray-600">
-              NOMBRE POKEMON
+              DATE DE LA COMMANDE
             </h5>
           </div>
           <div className="p-5 text-center">
@@ -66,7 +66,10 @@ const OrderTable = () => {
                 </div>
                 <div className="flex items-center justify-center p-5">
                   <p className="text-md font-medium text-gray-800">
-                    {order.products.length}
+                    {new Intl.DateTimeFormat("fr-FR", {
+                      dateStyle: "short",
+                      timeStyle: "short",
+                    }).format(new Date(order.createdAt))}
                   </p>
                 </div>
                 <div className="flex items-center justify-center p-5">

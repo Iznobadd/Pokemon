@@ -9,4 +9,5 @@ export interface Order {
   status: string;
   products: ProductData[];
   completedAt: Date;
+  createdAt: Date;
 }
