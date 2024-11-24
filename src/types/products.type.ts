@@ -4,6 +4,7 @@ export interface ProductData {
   image: string;
   price: number;
   quantity: number;
+  shiny: boolean;
 }
 
 export interface CheckoutSessionResponse {

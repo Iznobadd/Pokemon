@@ -128,7 +128,7 @@ const OrderTable = () => {
                         </p>
                       </div>
                       <p className="text-md font-medium text-gray-800">
-                        ${product.price}
+                        {product.shiny ? "SHINY" : "NON SHINY"}
                       </p>
                     </div>
                   ))}

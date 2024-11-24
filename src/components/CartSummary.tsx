@@ -30,6 +30,7 @@ const CartSummary = ({ cart }: CartSummaryProps) => {
     image: item.pokemon.sprites.front || "",
     price: 4.99,
     quantity: 1,
+    shiny: item.shiny,
   }));
 
   let total = cart.length * 4.99;
