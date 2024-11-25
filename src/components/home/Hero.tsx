@@ -17,8 +17,8 @@ const Hero = () => {
           Explore
         </Link>
       </div>
-      <div className="w-1/2">
-        <img src={Mew} alt="" className="" />
+      <div className="w-1/2 text-center">
+        <img src={Mew} alt="" className="inline" />
       </div>
     </div>
   );
