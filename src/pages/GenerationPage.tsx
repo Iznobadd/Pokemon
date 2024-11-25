@@ -69,7 +69,7 @@ const GenerationPage = () => {
             </h3>
             <img src={pokemon.sprites.front} className="h-30" />
             <button
-              className="bg-orange-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-orange-600 transition mt-6"
+              className="bg-button text-white px-6 py-3 rounded-lg shadow-md hover:bg-button/70 transition mt-6"
               onClick={() =>
                 addToCart({
                   pokemon,
@@ -85,7 +85,7 @@ const GenerationPage = () => {
       </div>
       <div className="flex justify-center items-center mt-8">
         <button
-          className="bg-orange-500 text-white px-4 py-2 rounded-md mx-2 disabled:bg-gray-500"
+          className="bg-button text-white px-4 py-2 rounded-md mx-2 disabled:bg-gray-500"
           onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
           disabled={page === 0 || findParams.isLoading}
         >
@@ -93,7 +93,7 @@ const GenerationPage = () => {
         </button>
         <span className="text-white mx-4">Page {page + 1}</span>
         <button
-          className="bg-orange-500 text-white px-4 py-2 rounded-md mx-2 disabled:bg-gray-500"
+          className="bg-button text-white px-4 py-2 rounded-md mx-2 disabled:bg-gray-500"
           onClick={() => setPage((prev) => prev + 1)}
           disabled={!findParams.data || findParams.data.length < ITEMS_PER_PAGE}
         >

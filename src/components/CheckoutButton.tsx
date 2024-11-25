@@ -45,7 +45,7 @@ const CheckoutButton: FC<CheckoutButtonProps> = ({
   return (
     <div>
       <button
-        className="bg-orange-500 text-white px-8 py-4 rounded w-full font-bold"
+        className="bg-button text-white px-8 py-4 rounded w-full font-bold"
         onClick={handleCheckout}
         disabled={checkoutMutation.isPending}
       >

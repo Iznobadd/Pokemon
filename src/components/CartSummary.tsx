@@ -148,7 +148,7 @@ const CartSummary = ({ cart }: CartSummaryProps) => {
         </div>
       ) : (
         <div className="pt-8 mx-8">
-          <button className="bg-orange-500 text-white px-8 py-4 rounded w-full font-bold">
+          <button className="bg-button text-white px-8 py-4 rounded w-full font-bold">
             Login
           </button>
           <button className="mt-8 bg-gray-400 text-white px-8 py-4 rounded w-full font-bold">

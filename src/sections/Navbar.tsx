@@ -17,7 +17,9 @@ const Navbar = () => {
   return (
     <nav className="border-b-[0.5px] border-b-primary py-6">
       <div className="flex justify-between items-center w-full h-full container mx-auto">
-        <img src={Logo} alt="Logo Pokemon" className="h-12 cursor-pointer" />
+        <Link to="/">
+          <img src={Logo} alt="Logo Pokemon" className="h-12 cursor-pointer" />
+        </Link>
         <ul className="flex">
           {generations.map((generation) => (
             <li key={generation} className="mx-4 cursor-pointer text-white">
@@ -35,7 +37,7 @@ const Navbar = () => {
                 size={32}
               />
               {cart.length > 0 && (
-                <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs font-bold rounded-full px-2 py-1">
+                <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-button text-white text-xs font-bold rounded-full px-2 py-1">
                   {cart.length}
                 </span>
               )}
@@ -45,7 +47,7 @@ const Navbar = () => {
           {user?.role === "ADMIN" && (
             <Link
               to="/admin"
-              className="text-white px-4 py-2 bg-orange-500 rounded-md"
+              className="text-white px-4 py-2 bg-button rounded-md"
             >
               Administration
             </Link>

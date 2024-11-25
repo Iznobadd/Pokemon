@@ -47,7 +47,7 @@ const Cart = () => {
                   <span className="font-bold text-lg">SHINY :</span>
                   <span
                     className={`px-4 py-2 m-2 border border-white rounded cursor-pointer ${
-                      item.shiny ? "bg-orange-500 border-0" : ""
+                      item.shiny ? "bg-button border-0" : ""
                     }`}
                     onClick={() => updateShinyStatus(item.pokemon.id, true)}
                   >
@@ -55,7 +55,7 @@ const Cart = () => {
                   </span>
                   <span
                     className={`px-4 py-2 m-2 border border-white rounded cursor-pointer ${
-                      item.shiny ? "" : "bg-orange-500 border-0"
+                      item.shiny ? "" : "bg-button border-0"
                     }`}
                     onClick={() => updateShinyStatus(item.pokemon.id, false)}
                   >
