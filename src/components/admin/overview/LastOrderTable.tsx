@@ -4,9 +4,10 @@ import Loading from "../../Loading";
 import { IoMdCheckboxOutline } from "react-icons/io";
 import { useState } from "react";
 import { useConfirmOrder } from "../../../services/order/mutations";
+import { Link } from "react-router-dom";
 
-const OrderTable = () => {
-  const allOrders = useAllOrders({});
+const LastOrderTable = () => {
+  const allOrders = useAllOrders({ limit: 5 });
   const confirmOrder = useConfirmOrder();
 
   const [expandedOrder, setExpandedOrder] = useState<string | null>(null);
@@ -22,7 +23,7 @@ const OrderTable = () => {
   return (
     <div className="rounded-sm border bg-white pt-6 shadow-md px-8 pb-1">
       <h4 className="font-bold text-2xl text-gray-800 mb-6">
-        Toutes les commandes
+        Dernières commandes
       </h4>
       <div className="flex flex-col">
         <div className="grid grid-cols-5 rounded-sm bg-gray-100">
@@ -142,8 +143,15 @@ const OrderTable = () => {
           ))
         )}
       </div>
+      <div className="flex justify-center my-4">
+        <Link to="/admin/orders">
+          <p className="text-black px-8 py-2 bg-gray-300 rounded-sm">
+            Voir toutes les commandes
+          </p>
+        </Link>
+      </div>
     </div>
   );
 };
 
-export default OrderTable;
+export default LastOrderTable;

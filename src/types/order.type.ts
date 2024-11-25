@@ -13,3 +13,7 @@ export interface Order {
   completedAt: Date;
   createdAt: Date;
 }
+
+export interface OrderParams {
+  limit?: number;
+}

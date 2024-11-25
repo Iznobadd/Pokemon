@@ -1,4 +1,4 @@
-import { Order } from "../../types/order.type";
+import { Order, OrderParams } from "../../types/order.type";
 import apiClient from "../../utils/apiClient";
 
 export const getTotalOrders = async () => {
@@ -6,8 +6,10 @@ export const getTotalOrders = async () => {
   return response.data;
 };
 
-export const getOrders = async () => {
-  const response = await apiClient.get<Order[]>("/orders/all");
+export const getOrders = async (params: OrderParams) => {
+  const response = await apiClient.get<Order[]>("/orders/all", {
+    params,
+  });
   return response.data;
 };
 
