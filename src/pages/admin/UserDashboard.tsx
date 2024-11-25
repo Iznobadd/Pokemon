@@ -1,5 +1,7 @@
+import UserTable from "../../components/admin/user/UserTable";
+
 const UserDashboard = () => {
-  return <div>UserDashboard</div>;
+  return <UserTable />;
 };
 
 export default UserDashboard;

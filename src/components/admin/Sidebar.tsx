@@ -50,9 +50,11 @@ const Sidebar = () => {
               </li>
               <li>
                 <Link
-                  to="/test"
+                  to="/admin/users"
                   className={`group relative flex items-center gap-3 rounded-sm py-2 px-4 text-xl font-semibold text-white/90 transition duration-300 ${
-                    isActive("/test") ? "bg-gray-600" : "hover:bg-gray-600"
+                    isActive("/admin/users")
+                      ? "bg-gray-600"
+                      : "hover:bg-gray-600"
                   }`}
                 >
                   <FaUsers /> Utilisateurs
