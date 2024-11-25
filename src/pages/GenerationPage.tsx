@@ -74,7 +74,7 @@ const GenerationPage = () => {
         <div className="text-center mt-4">
           <input
             type="text"
-            placeholder="Rechercher un Pokémon"
+            placeholder="Search a Pokemon"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="border rounded-md text-black w-96 placeholder:text-center p-4 text-center"
@@ -106,7 +106,7 @@ const GenerationPage = () => {
                   <FaCheck size={24} />
                 </span>
               ) : (
-                "Ajouter au panier"
+                "Add to cart"
               )}
             </button>
           </div>
