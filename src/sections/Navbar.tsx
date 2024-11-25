@@ -15,7 +15,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="border-b-[0.5px] border-b-primary py-6">
+    <nav className="py-6 bg-black fixed w-full z-30">
       <div className="flex justify-between items-center w-full h-full container mx-auto">
         <Link to="/">
           <img src={Logo} alt="Logo Pokemon" className="h-12 cursor-pointer" />

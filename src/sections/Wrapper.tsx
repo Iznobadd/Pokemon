@@ -6,9 +6,11 @@ interface WrapperProps {
 
 const Wrapper: React.FC<WrapperProps> = ({ children }) => {
   return (
-    <div className="min-h-dvh bg-content relative overflow-hidden py-20">
-      <div className="container mx-auto">{children}</div>
-    </div>
+    <>
+      <div className="min-h-[300vh] bg-content relative overflow-hidden py-40">
+        <div className="container mx-auto">{children}</div>
+      </div>
+    </>
   );
 };
 
