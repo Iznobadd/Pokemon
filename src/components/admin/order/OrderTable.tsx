@@ -101,7 +101,7 @@ const OrderTable = () => {
                     className="text-md font-medium text-gray-800 bg-gray-300 px-4 py-2 rounded-sm cursor-pointer"
                     onClick={() => toggleExpand(order._id)}
                   >
-                    {expandedOrder === order._id ? "Réduire" : "Voir détails"}
+                    {expandedOrder === order._id ? "Réduire" : "Détails"}
                   </p>
                   {order.status === "PENDING" && (
                     <p
@@ -115,7 +115,7 @@ const OrderTable = () => {
               </div>
 
               {expandedOrder === order._id && order.products.length > 0 && (
-                <div className="grid grid-cols-3 gap-4 p-4 bg-gray-50">
+                <div className="grid grid-cols-3 gap-4 p-4 bg-gray-100">
                   {order.products.map((product) => (
                     <div
                       key={product.name}
@@ -127,7 +127,11 @@ const OrderTable = () => {
                           )
                         </p>
                       </div>
-                      <p className="text-md font-medium text-gray-800">
+                      <p
+                        className={`text-md p-2 font-medium rounded text-gray-800 ${
+                          product.shiny ? "bg-green-500" : "bg-red-500"
+                        }`}
+                      >
                         {product.shiny ? "SHINY" : "NON SHINY"}
                       </p>
                     </div>

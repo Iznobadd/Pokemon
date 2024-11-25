@@ -3,12 +3,17 @@ import { useFind } from "../services/pokemon/queries";
 import { useCart } from "../context/useCart";
 import { useEffect, useState } from "react";
 import Loading from "../components/Loading";
+import { Pokemon } from "../types/pokemon.type";
+import { FaCheck } from "react-icons/fa6";
 
 const GenerationPage = () => {
   const { generation } = useParams<{ generation: string }>();
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState<string>("");
   const [page, setPage] = useState<number>(0);
+  const [animationStates, setAnimationStates] = useState<
+    Record<number, boolean>
+  >({});
   const ITEMS_PER_PAGE = 20;
 
   const { addToCart } = useCart();
@@ -40,6 +45,26 @@ const GenerationPage = () => {
     offset: page * ITEMS_PER_PAGE,
   });
 
+  const handleAddToCart = (pokemon: Pokemon) => {
+    addToCart({
+      pokemon,
+      generation: generation || "",
+      shiny: true,
+    });
+
+    setAnimationStates((prev) => ({
+      ...prev,
+      [pokemon.id]: true,
+    }));
+
+    setTimeout(() => {
+      setAnimationStates((prev) => ({
+        ...prev,
+        [pokemon.id]: false,
+      }));
+    }, 2000);
+  };
+
   return (
     <>
       <div>
@@ -52,7 +77,7 @@ const GenerationPage = () => {
             placeholder="Rechercher un Pokémon"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="border p-2 rounded-md text-black"
+            className="border rounded-md text-black w-96 placeholder:text-center p-4 text-center"
           />
         </div>
       </div>
@@ -69,16 +94,20 @@ const GenerationPage = () => {
             </h3>
             <img src={pokemon.sprites.front} className="h-30" />
             <button
-              className="bg-button text-white px-6 py-3 rounded-lg shadow-md hover:bg-button/70 transition mt-6"
-              onClick={() =>
-                addToCart({
-                  pokemon,
-                  generation: generation || "",
-                  shiny: true,
-                })
-              }
+              className={`relative bg-button text-white px-6 py-3 rounded-lg shadow-md hover:bg-button/70 transition mt-6 w-full ${
+                animationStates[pokemon.id]
+                  ? "bg-green-500 hover:bg-green-500"
+                  : ""
+              }`}
+              onClick={() => handleAddToCart(pokemon)}
             >
-              Ajouter au panier
+              {animationStates[pokemon.id] ? (
+                <span className="flex justify-center items-center ">
+                  <FaCheck size={24} />
+                </span>
+              ) : (
+                "Ajouter au panier"
+              )}
             </button>
           </div>
         ))}
