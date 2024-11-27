@@ -68,11 +68,17 @@ export const AuthProvider = ({ children }: Props) => {
   const login = (token: string) => {
     localStorage.setItem("access_token", token);
     setToken(token);
+    const decodedToken = jwtDecode<JwtToken>(token);
+    if (decodedToken) {
+      setUser(decodedToken);
+    }
   };
 
   const logout = () => {
     localStorage.removeItem("access_token");
     setToken(null);
+    setUser(null);
+    window.location.href = "/login";
   };
 
   return (

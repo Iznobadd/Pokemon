@@ -5,7 +5,7 @@ import { useCart } from "../context/useCart";
 import { useAuth } from "../context/useAuth";
 const Navbar = () => {
   const { cart } = useCart();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   const generations = [
     "Scarlet Violet",
@@ -43,16 +43,41 @@ const Navbar = () => {
               )}
             </Link>
           </div>
-          <Link to="/account">
-            <FaUser className="text-white cursor-pointer" size={32} />
-          </Link>
-          {user?.role === "ADMIN" && (
-            <Link
-              to="/admin"
-              className="text-white px-4 py-2 bg-button rounded-md"
-            >
-              Administration
-            </Link>
+          {user ? (
+            <>
+              <Link to="/account">
+                <FaUser className="text-white cursor-pointer" size={32} />
+              </Link>
+              <button
+                className="text-white px-4 py-2 bg-red-700 rounded-md"
+                onClick={logout}
+              >
+                Logout
+              </button>
+              {user?.role === "ADMIN" && (
+                <Link
+                  to="/admin"
+                  className="text-white px-4 py-2 bg-button rounded-md"
+                >
+                  Administration
+                </Link>
+              )}
+            </>
+          ) : (
+            <>
+              <Link
+                to="/register"
+                className="text-white px-4 py-2 bg-gray-800 rounded-md"
+              >
+                Register
+              </Link>
+              <Link
+                to="/login"
+                className="text-white px-4 py-2 bg-button rounded-md"
+              >
+                Login
+              </Link>
+            </>
           )}
         </div>
       </div>

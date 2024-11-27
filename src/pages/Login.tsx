@@ -5,9 +5,11 @@ import { useLogin } from "../services/auth/mutations";
 import { useAuth } from "../context/useAuth";
 import { Helmet } from "react-helmet";
 import Loading from "../components/Loading";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { loading, token } = useAuth();
+  const navigate = useNavigate();
 
   if (loading) {
     return <Loading />;
@@ -28,6 +30,7 @@ const Login = () => {
 
   const onSubmit = (data: LoginData) => {
     loginMutation.mutate(data);
+    navigate("/");
   };
 
   return (
