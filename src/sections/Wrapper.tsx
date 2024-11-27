@@ -7,7 +7,7 @@ interface WrapperProps {
 const Wrapper: React.FC<WrapperProps> = ({ children }) => {
   return (
     <>
-      <div className="relative overflow-hidden py-40">
+      <div className="relative overflow-hidden pt-40">
         <div className="container mx-auto">{children}</div>
       </div>
     </>
