@@ -13,6 +13,11 @@ export const getOrders = async (params: OrderParams) => {
   return response.data;
 };
 
+export const myOrders = async () => {
+  const response = await apiClient.get<Order[]>("/orders/me");
+  return response.data;
+};
+
 export const confirmOrder = async (id: string) => {
   const response = await apiClient.post<Order>("/orders/edit/status", { id });
   return response.data;
