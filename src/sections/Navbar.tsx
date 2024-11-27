@@ -43,7 +43,9 @@ const Navbar = () => {
               )}
             </Link>
           </div>
-          <FaUser className="text-white cursor-pointer" size={32} />
+          <Link to="/account">
+            <FaUser className="text-white cursor-pointer" size={32} />
+          </Link>
           {user?.role === "ADMIN" && (
             <Link
               to="/admin"

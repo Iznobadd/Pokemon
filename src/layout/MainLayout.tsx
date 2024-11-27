@@ -8,7 +8,7 @@ const MainLayout = () => {
   return (
     <div className="relative max-w-[100vw] overflow-hidden bg-black">
       <Background />
-      <div className="w-screen shadow-background">
+      <div className="w-screen shadow-background min-h-screen">
         <Navbar />
         <Wrapper>
           <Outlet />

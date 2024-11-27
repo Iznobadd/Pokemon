@@ -12,6 +12,7 @@ import AdminLayout from "../layout/AdminLayout";
 import HomeDashboard from "../pages/admin/HomeDashboard";
 import OrderDashboard from "../pages/admin/OrderDashboard";
 import UserDashboard from "../pages/admin/UserDashboard";
+import Account from "../pages/Account";
 
 export const router = createBrowserRouter([
   {
@@ -46,8 +47,8 @@ export const router = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [
           {
-            path: "/test",
-            element: <div>Test</div>,
+            path: "/account",
+            element: <Account />,
           },
         ],
       },
