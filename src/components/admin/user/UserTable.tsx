@@ -56,7 +56,10 @@ const UserTable = () => {
                 </div>
                 <div className="flex items-center justify-center p-5">
                   <p className="text-md font-medium text-gray-800">
-                    Ajouter la date
+                    {new Intl.DateTimeFormat("fr-FR", {
+                      dateStyle: "short",
+                      timeStyle: "short",
+                    }).format(new Date(user.createdAt))}
                   </p>
                 </div>
                 <div className="flex items-center justify-center p-5">
