@@ -45,9 +45,9 @@ const CheckoutButton: FC<CheckoutButtonProps> = ({
   return (
     <div>
       <button
-        className="bg-button text-white px-8 py-4 rounded w-full font-bold"
+        className="bg-button text-white px-8 py-4 rounded w-full font-bold disabled:opacity-50"
         onClick={handleCheckout}
-        disabled={checkoutMutation.isPending}
+        disabled={checkoutMutation.isPending || deliveryDetails === ""}
       >
         {checkoutMutation.isPending ? "Loading..." : "CHECKOUT"}
       </button>

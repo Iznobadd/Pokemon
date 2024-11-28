@@ -8,11 +8,15 @@ type CartSummaryProps = {
   cart: CartItem[];
 };
 
+type DeliveryMethod = "WHATSAPP" | "DISCORD" | "EMAIL";
+
 const CartSummary = ({ cart }: CartSummaryProps) => {
-  const [selectedDelivery, setSelectedDelivery] = useState<string>("WHATSAPP");
+  const deliveryMethods: DeliveryMethod[] = ["WHATSAPP", "DISCORD", "EMAIL"];
+  const [selectedDelivery, setSelectedDelivery] =
+    useState<DeliveryMethod>("WHATSAPP");
   const [deliveryDetails, setDeliveryDetails] = useState<string>("");
 
-  const handleDeliverySelect = (method: string) => {
+  const handleDeliverySelect = (method: DeliveryMethod) => {
     setSelectedDelivery(method);
     setDeliveryDetails("");
   };
@@ -61,7 +65,7 @@ const CartSummary = ({ cart }: CartSummaryProps) => {
       <div className="py-8 mx-8 border-b border-primary">
         <h3 className="font-bold text-xl text-white">DELIVERY</h3>
         <div className="flex justify-around">
-          {["WHATSAPP", "DISCORD", "EMAIL"].map((method) => (
+          {deliveryMethods.map((method) => (
             <div
               key={method}
               className={`flex justify-between py-4 items-center w-full text-center cursor-pointer ${
