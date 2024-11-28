@@ -15,3 +15,8 @@ export const changePassword = async (data: ChangePasswordDto) => {
   const response = await apiClient.post<User>("/users/change-password", data);
   return response.data;
 };
+
+export const deleteMyAccount = async () => {
+  const response = await apiClient.delete<User>("/users/delete-account");
+  return response.data;
+};
