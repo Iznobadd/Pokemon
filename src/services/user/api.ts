@@ -20,3 +20,8 @@ export const deleteMyAccount = async () => {
   const response = await apiClient.delete<User>("/users/delete-account");
   return response.data;
 };
+
+export const deleteUser = async (id: string) => {
+  const response = await apiClient.delete<User>(`/users/delete/${id}`);
+  return response.data;
+};

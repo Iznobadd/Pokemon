@@ -29,8 +29,11 @@ const Login = () => {
   const loginMutation = useLogin();
 
   const onSubmit = (data: LoginData) => {
-    loginMutation.mutate(data);
-    navigate("/");
+    loginMutation.mutate(data, {
+      onSuccess: () => {
+        navigate("/");
+      },
+    });
   };
 
   return (
